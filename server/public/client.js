@@ -10,8 +10,8 @@ function onReady (){
 function clickListeners(){
   console.log("in ClickListeners"); 
 $('#add-btn').on('click', addTask);
-//$(CHECKBOX PARENT).on('click', completeTask);
-//$(DELETE PARENT).on('click',deleteTask);
+$('#task-list').on('click', '.checkbox', completeTask);
+$('#task-list').on('click', '#delete-btn',deleteTask);
 }
 
 
@@ -34,10 +34,10 @@ function renderDOM(data){
   $('#task-list').empty(); 
   for(let i = 0; i<data.length; i++){
     $('#task-list').append(`
-    <p class="uncompleted">
-    <input type="checkbox" name="task" id="${data[i].id}">
+    <p class="${data[i].completed}">
+    <input class="checkbox" type="checkbox" name="task" data-id="${data[i].id}">
     <label for="task">${data[i].task}</label>
-    <button id="delete-btn">DELETE</button>
+    <button id="delete-btn" data-id="${data[i].id}">DELETE</button>
   </p>
     `)} 
 }
@@ -59,9 +59,32 @@ function addTask(){
 }
 
 //PUT FUNCTION 
-//function completeTask(){}
-//ajax PUT, url: /task_list/id
+function completeTask(){
+let checkboxId = $(this).data('id'); 
+console.log(checkboxId);
+$.ajax({ 
+  method: 'PUT', 
+  url: `/task_list/${checkboxId}`,
+}).then(function(response){ 
+  console.log("put completed", response); 
+  getData(); 
+}).catch(function(error){ 
+  alert("Error with update:", error); 
+})
+
+}
 
 //DELETE FUNCTION 
-//function deleteTask(){}
-//ajax DELETE, url: /task_list/id
+function deleteTask(){
+  let id = $(this).data('id');
+  $.ajax({ 
+    method:'DELETE', 
+    url: `/task_list/${id}`, 
+  }).then(function(){ 
+    console.log('Delete Complete'); 
+    getData(); 
+  }).catch(function(error){ 
+    alert('Error, could not delete.Error', error);
+  })
+
+}
