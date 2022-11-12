@@ -8,11 +8,12 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 //Serve Static Files 
 app.use(express.static('server/public'));
-//process.env.PORT
-//const taskRouter = require('./router.tasklist.js')
+
+
 
 // ROUTES
-//app.use('/task_list', taskRouter);
+const taskRouter = require('./router.tasklist.js')
+app.use('/task_list', taskRouter);
 
 
 
