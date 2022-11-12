@@ -9,7 +9,7 @@ function onReady (){
 
 function clickListeners(){
   console.log("in ClickListeners"); 
-//$(addBtn).on('click', addTask);
+$('#add-btn').on('click', addTask);
 //$(CHECKBOX PARENT).on('click', completeTask);
 //$(DELETE PARENT).on('click',deleteTask);
 }
@@ -28,7 +28,6 @@ renderDOM(response);
 
 
 //Render Function 
-
 //note, go back and use the addClass function to clean this up 
 function renderDOM(data){
   console.log("in renderDOM", data); 
@@ -44,8 +43,20 @@ function renderDOM(data){
 }
 
 //POST FUNCTION 
-//function addTask(){}
-//ajax POST, data: {task: input}
+function addTask(){ 
+  let task = $(this).siblings().val(); 
+  let data = {task: task}; 
+  $.ajax({ 
+    method: 'POST', 
+    url: '/task_list',
+    data: data
+  }).then(function(){ 
+    console.log("post succes"); 
+    getData(); 
+  }).catch(function(error){ 
+    alert("Could not input task. Error:", error); 
+  })
+}
 
 //PUT FUNCTION 
 //function completeTask(){}
