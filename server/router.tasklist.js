@@ -64,10 +64,23 @@ res.sendStatus(200);
 //DELETE Request to Database 
 
 //take in url with id in as param
-//write the queryText with DELETE FROM 
-//SANITIZE the data 
-//send the query text with pg pool 
-//create the response to client.js 
+router.delete('/:id', (req, res)=>{ 
+  console.log("In DELETE request", req.params.id); 
+  let id = req.params.id; 
+  let queryText = `
+  DELETE
+  FROM "tasks" 
+  WHERE "id" = $1
+  `;
+pool.query(queryText, [id]).then((result)=> {
+console.log("completed DELETE", result); 
+res.sendStatus(200);
+}).catch((error)=>{ 
+  console.log(error); 
+  res.sendStatus(500); 
+})
+})
+
 
 
 module.exports = router; 
