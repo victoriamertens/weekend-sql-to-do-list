@@ -5,7 +5,20 @@ let router = express.Router();
 let pool = require('./modules/pool.js'); 
 
 //GET Request to Database 
-
+router.get('/', (req, res)=>{ 
+  console.log("In GET request", req.body); 
+  let queryText = `
+  SELECT * 
+  FROM "tasks" 
+  `;
+pool.query(queryText).then((result)=> {
+console.log("completed get", result.rows); 
+res.send(result.rows);
+}).catch((error)=>{ 
+  console.log(error); 
+  res.sendStatus(500); 
+})
+})
 //take in url without anything behind it 
 //write the queryText with SELECT
 //SANITIZE the data 
@@ -31,11 +44,6 @@ res.sendStatus(201);
   res.sendStatus(500); 
 })
 })
-//take in url without anything behind it 
-//write the queryText with INSERT INTO
-//SANITIZE the data 
-//send the query text with pg pool 
-//create the response to client.js 
 
 //PUT Request to Database 
 
