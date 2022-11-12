@@ -1,7 +1,41 @@
+
+* {
+  box-sizing: border-box;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+body { 
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(89,157,143,1) 35%, rgba(239,244,245,1) 100%);
+}
+
+h1{ 
+  text-align: center; 
+}
+
+input{ 
+  width: 50px;
+}
+
+#new-task{ 
+  width: 300px;
+}
+
+#inputs{ 
+  margin: 15px;
+}
+
+p {
+  margin: 5px;
+  padding: 5px;
+}
+
 .true{ 
-  background-color: red;
+  background-color: rgb(48, 46, 46);
+  color: white; 
+  text-decoration: line-through
 }
 
 .false{
-  background-color: blue;
+  background-color: lightgrey;
 }
