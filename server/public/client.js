@@ -31,6 +31,7 @@ renderDOM(response);
 //note, go back and use the addClass function to clean this up 
 function renderDOM(data){
   console.log("in renderDOM", data); 
+  $('#new-task').val(''); 
   $('#task-list').empty(); 
   for(let i = 0; i<data.length; i++){
     $('#task-list').append(`
