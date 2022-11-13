@@ -5,11 +5,11 @@
 
 Duration: 4 hours
 
-I created a 'To-Do List' fullstack application. This application has a few different functions. You can add new tasks to the list by entering an input into the text box provided. This will take task, enter it into the database, and add it to the list of tasks you have already created. When you complete a task, just click the checkbox and the application will mark the task as complete in the database and visually represent a completed task by drawing a line through the text. If you find you no longer need to complete a task, you can hit the delete button and it will be removed from the database. 
+I created a 'To-Do List' fullstack application. This application has a few different functions. When you add new tasks to the list, you can select the level of importance for the task along with the task bame. This will take each task, enter it into the database, and add it to the list of tasks ordered by level of importance. When you complete a task, just click the complete button and the application will mark the task as complete in the database and visually represent a completed task by drawing a line through the text. If you find you no longer need to complete a task, you can hit the delete button and it will be removed from the database. 
 
 ## Screen Shot 
 
-![ScreenShot](server/Screen-Shot-base.png) 
+![ScreenShot](server/StretchMode-screen.png) 
 
 ## Prerequisites 
 

@@ -1,41 +1,58 @@
-
-* {
-  box-sizing: border-box;
-  font-family:Arial, Helvetica, sans-serif;
+*{ 
+  padding: 1rem;
 }
-
-body { 
-  background: rgb(2,0,36);
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(89,157,143,1) 35%, rgba(239,244,245,1) 100%);
-}
-
 h1{ 
   text-align: center; 
 }
+#select-line{ 
+  margin: 0px; 
+}
 
-input{ 
-  width: 50px;
+#add-btn{ 
+float: right;
+margin: 0px 15px 15px 0px;; 
+}
+hr{ 
+  margin: 0px; 
+  padding: 0px; 
 }
 
 #new-task{ 
-  width: 300px;
+  width: 100%;
+  display: block; 
+  margin: 15px 0px 15px 0px; 
 }
 
-#inputs{ 
-  margin: 15px;
+.Casual{ 
+  background-color: rgb(172, 251, 187);
 }
 
-p {
-  margin: 5px;
-  padding: 5px;
+.Time{ 
+  background-color: rgb(247, 211, 145);
 }
+
+.Important{ 
+  background-color: rgb(248, 248, 187);
+}
+
+#time-btn{ 
+  background-color:rgb(247, 195, 99);
+  color: black; 
+}
+#casual-btn{ 
+  background-color:rgb(127, 255, 153);
+  color: black; 
+}
+#important-btn{ 
+  background-color:rgb(249, 249, 125);
+  color: black; 
+}
+
 
 .true{ 
-  background-color: rgb(48, 46, 46);
   color: white; 
-  text-decoration: line-through
+  text-decoration: line-through;
+  text-decoration-color: red;  
 }
 
-.false{
-  background-color: lightgrey;
-}
+
