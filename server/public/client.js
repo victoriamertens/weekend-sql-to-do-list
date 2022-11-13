@@ -10,10 +10,15 @@ function onReady (){
 function clickListeners(){
   console.log("in ClickListeners"); 
 $('#add-btn').on('click', addTask);
-$('#task-list').on('click', '.checkbox', completeTask);
+$('#task-list').on('click', '#complete-btn', completeTask);
 $('#task-list').on('click', '#delete-btn',deleteTask);
+$('.list-type').on('click', changeList);
 }
 
+let list = 'Casual'; 
+function changeList(){ 
+list = $(this).data('id'); 
+}
 
 //GET FUNCTION 
 function getData(){
@@ -22,7 +27,13 @@ $.ajax({
   url: '/task_list'
 }).then(function(response){ 
   console.log("Returned GET request", response); 
-renderDOM(response); 
+  let casualArr = response.filter(test=>
+    test.list === 'Casual');
+  let timeArr = response.filter(test=>test.list === 'Time'); 
+  let importantArr = response.filter(test=>test.list === 'Important'); 
+  console.log(casualArr); 
+ let lastArr = timeArr.concat(importantArr, casualArr); 
+renderDOM(lastArr); 
 })
 }
 
@@ -35,18 +46,23 @@ function renderDOM(data){
   $('#task-list').empty(); 
   for(let i = 0; i<data.length; i++){
     $('#task-list').append(`
-    <p class="${data[i].completed}">
-    <input class="checkbox" type="checkbox" name="task" data-id="${data[i].id}">
-    <label for="task">${data[i].task}</label>
-    <button id="delete-btn" data-id="${data[i].id}">DELETE</button>
-  </p>
+    <tr class="${data[i].list}">
+    <td class="${data[i].completed}">${data[i].task}
+    </td>
+    <td>
+      <button id="complete-btn" class="btn btn-outline-success " data-id="${data[i].id}">COMPLETE</button>
+    </td>
+    <td>
+      <button id="delete-btn" class="btn btn-outline-danger" data-id="${data[i].id}">DELETE</button>
+    </td>
+    </tr>
     `)} 
 }
 
 //POST FUNCTION 
 function addTask(){ 
   let task = $(this).siblings().val(); 
-  let data = {task: task}; 
+  let data = {task, list}; 
   $.ajax({ 
     method: 'POST', 
     url: '/task_list',
