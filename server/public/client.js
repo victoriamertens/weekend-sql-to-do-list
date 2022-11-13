@@ -34,6 +34,8 @@ $.ajax({
   console.log(casualArr); 
  let lastArr = timeArr.concat(importantArr, casualArr); 
 renderDOM(lastArr); 
+}).catch(function(error){ 
+  alert("Could not retrieve data. Error:", error); 
 })
 }
 
