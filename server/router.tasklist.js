@@ -9,7 +9,7 @@ router.get('/', (req, res)=>{
   console.log("In GET request", req.body); 
   let queryText = `
   SELECT * 
-  FROM "tasks" 
+  FROM "updated_tasks" 
   `;
 pool.query(queryText).then((result)=> {
 console.log("completed get", result.rows); 
@@ -25,12 +25,12 @@ router.post('/', (req, res)=>{
   console.log("In POST request", req.body); 
   let input = req.body;
   let queryText = `
-  INSERT INTO "tasks" 
-  ("task")
+  INSERT INTO "updated_tasks" 
+  ("task", "list")
   VALUES
-  ($1)
+  ($1, $2)
   `;
-pool.query(queryText, [input.task]).then((result)=> {
+pool.query(queryText, [input.task, input.list]).then((result)=> {
 console.log("completed post"); 
 res.sendStatus(201);
 }).catch((error)=>{ 
@@ -46,9 +46,9 @@ router.put('/:id', (req, res)=>{
   console.log("In PUT request", req.params.id); 
   let id = req.params.id; 
   let queryText = `
-  UPDATE "tasks" 
+  UPDATE "updated_tasks" 
   SET "completed" = 'true'
-  WHERE "id" = $1
+  WHERE "id" = $1;
   `;
 pool.query(queryText, [id]).then((result)=> {
 console.log("completed put", result); 
@@ -69,7 +69,7 @@ router.delete('/:id', (req, res)=>{
   let id = req.params.id; 
   let queryText = `
   DELETE
-  FROM "tasks" 
+  FROM "updated_tasks" 
   WHERE "id" = $1
   `;
 pool.query(queryText, [id]).then((result)=> {
