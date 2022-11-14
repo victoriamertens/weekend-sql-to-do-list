@@ -1,5 +1,5 @@
 //Set Port
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 //Inport express
 const express = require('express');
 const app = express();
@@ -9,13 +9,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 //Serve Static Files 
 app.use(express.static('server/public'));
 
-
-
 // ROUTES
-const taskRouter = require('./router.tasklist.js')
-app.use('/task_list', taskRouter);
-
-
+//const taskRouter = require('./router.tasklist.js')
+//app.use('/task_list', taskRouter);
 
 
 // Start listening for requests on a specific port
